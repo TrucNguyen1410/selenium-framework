@@ -13,14 +13,15 @@ import java.io.IOException;
 import java.util.List;
 
 public class LoginTest extends BaseTest {
-
-    // DataProvider thuần
-    @DataProvider(name = "loginData")
-    public Object[][] provideLoginData() {
-        return new Object[][]{
-            {"standard_user", "secret_sauce", "SUCCESS", "Đăng nhập hợp lệ"}
-        };
-    }
+    // DataProvider thuần (Đã bảo mật)
+        @DataProvider(name = "loginData")
+        public Object[][] provideLoginData() {
+            return new Object[][]{
+                {framework.config.ConfigReader.getInstance().getAppUsername(), 
+                framework.config.ConfigReader.getInstance().getAppPassword(), 
+                "SUCCESS", "Đăng nhập hợp lệ"}
+            };
+        }
 
     @Test(dataProvider = "loginData")
     public void testLoginBasic(String username, String password, String expected, String desc) {
